@@ -68,6 +68,8 @@ Plex.prototype._pre = function () {
         this.push(row);
         
         next();
+    },function(){
+        self.emit('end');
     });
 };
 
