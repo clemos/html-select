@@ -68,15 +68,18 @@ Plex.prototype._pre = function () {
         this.push(row);
         
         next();
-    },function(){
-        self.emit('end');
+    },function (){
+        this.push(null);
     });
 };
 
 Plex.prototype._post = function () {
+    var self = this;
     return through.obj(function (row, enc, next) {
         if (row[0] !== 'FIRST') this.push(row);
         next();
+    },function (){
+        self.emit('end');
     });
 };
 
